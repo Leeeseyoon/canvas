@@ -12,7 +12,7 @@
     #canvas1 {
         position: absolute;
         /* border: 1px solid black; */
-        background-color: rgb(226, 226, 226);
+        background-color: skyblue;
         top: 0;
         left: 0;
         width: 100%;
@@ -27,36 +27,31 @@
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
+        let size = 0;
+        let positionX = 300;
+        let positionY = 300;
+        let angle = 0;
 
-        let number = 0;
-        let scale = 10;
-        size =0;
 
         function drawFlower() {
-
-            let angle = number * 1;
-            let radius = scale * Math.sqrt(number);
-            let positionX = radius * Math.cos(angle) + canvas.width/2;
-            let positionY = radius * Math.sin(angle) + canvas.height/2;
-
-            ctx.fillStyle = '#FA5858';
-            ctx.strokeStyle = '#9FF781';
-            ctx.strokeStyle = 'hsla('+hue+', 50%, 50%, 1)';
-            ctx.lineWidth =0.2;
+            ctx.fillStyle = '#f0a07b';
+            ctx.strokeStyle = '#4a274f';
+            ctx.lineWidth =5;
             ctx.beginPath();
-            ctx.arc(positionX, positionY, size, size, 0, Math.PI * 2);
+            ctx.arc(positionX, positionY, size, 0, Math.PI * 2);
             ctx.closePath();
             ctx.fill();
             ctx.stroke();
-
-
-            size += 0.5;
-            number += 5;
         }
 
         function animate() {
-            /* ctx.clearReat(0, 0, canvas.width, canvas.height);
- */
+            /* ctx.clearRect(0, 0, canvas.width, canvas.height); */
+            size += 0.05;
+            positionX += 5 * Math.sin(angle);
+            positionY += 5 * Math.cos(angle);
+            angle +=0.1;
+
+
 
             drawFlower();
             requestAnimationFrame(animate);
